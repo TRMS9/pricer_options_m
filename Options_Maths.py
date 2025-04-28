@@ -186,11 +186,12 @@ st.set_page_config(page_title="Pricing Options App", layout="wide")
 st.title("📈 Application de Pricing d'Options")
 
 # Création des onglets
-tab1, tab2, tab3, tab4 = st.tabs(["Black-Scholes", "Binomial Tree", "Monte Carlo Européen", "Monte Carlo Longstaff-Schwartz"])
+tab1, tab2, tab3, tab4 = st.tabs(["Black-Scholes", "Binomial de Cox-Ross-Rubinstein", "Monte Carlo - Options Européennes", "Monte Carlo Longstaff-Schwartz - Options US"])
 
 # === Onglet 1 : Black-Scholes ===
 with tab1:
-    st.header("📈 Pricing avec Black-Scholes")
+    st.header("📈 Pricing avec Black-Scholes - Options Européennes")
+    st.divider()
 
     # Inputs Streamlit
     S = st.number_input("Prix du sous-jacent (S)", value=100.0)
@@ -199,6 +200,8 @@ with tab1:
     r = st.number_input("Taux sans risque (r)", value=0.05)
     sigma = st.number_input("Volatilité (σ)", value=0.2)
     option_type = st.selectbox("Type d'option", ("call", "put"))
+     # ➡️ Ajouter l'info AVANT le bouton
+    st.info("ℹ️ Veuillez entrer vos paramètres ci-dessus puis cliquer sur **Calculer**.")
 
     if st.button("Calculer avec Black-Scholes"):
 
@@ -237,16 +240,17 @@ with tab1:
         axs[1, 2].set_title("Vega")
 
         for ax in axs.flat:
-            ax.grid()
+            ax.grid(True)
             ax.set_xlabel("Prix du sous-jacent (S)")
             ax.legend(["Valeur"])
         
         plt.tight_layout()
         st.pyplot(fig)
 
-# === Onglet 2 : Binomial Tree ===
+# === Onglet 2 : Binomial de Cox-Ross-Rubinstein ===
 with tab2:
     st.header("🌳 Pricing avec l'Arbre Binomial de Cox-Ross-Rubinstein")
+    st.divider()
 
     # Inputs
     S = st.number_input("Prix du sous-jacent (S)", value=100.0, key="bin_s")
@@ -258,6 +262,9 @@ with tab2:
     option_type = st.selectbox("Type d'option", ("call", "put"), key="bin_type")
     american = st.checkbox("Option américaine ?", value=False)
 
+     # ➡️ Ajouter l'info AVANT le bouton
+    st.info("ℹ️ Veuillez entrer vos paramètres ci-dessus puis cliquer sur **Calculer**.")
+    
     if st.button("Calculer avec Binomial Tree"):
 
         # Calcul principal
@@ -294,7 +301,7 @@ with tab2:
         axs[2, 1].set_title("Rho")
 
         for ax in axs.flat:
-            ax.grid()
+            ax.grid(True)
             ax.legend()
             ax.set_xlabel("Prix du sous-jacent (S)")
 
@@ -303,6 +310,7 @@ with tab2:
 # === Onglet 3 : Monte Carlo Européen ===
 with tab3:
     st.header("🎲 Pricing avec Monte Carlo Options Européennes")
+    st.divider()
 
     # Inputs Streamlit
     S = st.number_input("Prix du sous-jacent (S)", value=100.0, key="mc_s")
@@ -313,6 +321,9 @@ with tab3:
     num_simulations = st.number_input("Nombre de simulations Monte Carlo", min_value=100, value=10000, step=100, key="mc_num")
     option_type = st.selectbox("Type d'option", ("call", "put"), key="mc_type")
     variance_reduction = st.checkbox("Utiliser la réduction de variance (antithétique) ?", value=False)
+
+     # ➡️ Ajouter l'info AVANT le bouton
+    st.info("ℹ️ Veuillez entrer vos paramètres ci-dessus puis cliquer sur **Calculer**.")
 
     if st.button("Calculer avec Monte Carlo Européen"):
 
@@ -334,13 +345,16 @@ with tab3:
         ax.set_xlabel("Payoff actualisé")
         ax.set_ylabel("Densité")
         ax.legend()
-        ax.grid()
+        ax.grid(True)
 
         st.pyplot(fig)
+        st.info("Veuillez entrer vos paramètres et cliquer sur 'Calculer'.")
+
 
 # === Onglet 4 : Monte Carlo Longstaff-Schwartz ===
 with tab4:
     st.header("🎲📚 Pricing avec Monte Carlo Longstaff-Schwartz - Options US")
+    st.divider()
 
     # Inputs Streamlit
     S = st.number_input("Prix du sous-jacent (S)", value=100.0, key="ls_s")
@@ -351,6 +365,9 @@ with tab4:
     M = st.number_input("Nombre de simulations Monte Carlo", min_value=100, value=10000, step=100, key="ls_m")
     N = st.number_input("Nombre de dates d'exercice (pas de temps)", min_value=2, value=50, step=1, key="ls_n")
     option_type = st.selectbox("Type d'option", ("call", "put"), key="ls_type")
+
+     # ➡️ Ajouter l'info AVANT le bouton
+    st.info("ℹ️ Veuillez entrer vos paramètres ci-dessus puis cliquer sur **Calculer**.")
 
     if st.button("Calculer avec Monte Carlo Longstaff-Schwartz"):
 
@@ -368,7 +385,7 @@ with tab4:
         ax1.set_title("Exemples de trajectoires simulées du sous-jacent")
         ax1.set_xlabel("Temps (années)")
         ax1.set_ylabel("Prix du sous-jacent")
-        ax1.grid()
+        ax1.grid(True)
         st.pyplot(fig1)
 
         # 2. Graphique de la distribution des valeurs actualisées finales
@@ -378,8 +395,9 @@ with tab4:
         ax2.set_title("Distribution des valeurs actualisées des payoffs")
         ax2.set_xlabel("Valeur actualisée du payoff")
         ax2.set_ylabel("Densité")
-        ax2.grid()
+        ax2.grid(True)
         st.pyplot(fig2)
+
 
 
 
