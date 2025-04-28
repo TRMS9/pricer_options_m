@@ -180,9 +180,6 @@ def monte_carlo_longstaff_schwartz(S, K, T, r, sigma, M, N, option_type="call"):
 
     return price, S_paths, V
 
-
-# (plus tard tu pourras aussi mettre ici black_scholes, monte_carlo, etc.)
-
 # === STREAMLIT APP ===
 
 st.set_page_config(page_title="Pricing Options App", layout="wide")
@@ -249,7 +246,7 @@ with tab1:
 
 # === Onglet 2 : Binomial Tree ===
 with tab2:
-    st.header("🌳 Pricing avec Binomial Tree")
+    st.header("🌳 Pricing avec l'Arbre Binomial de Cox-Ross-Rubinstein")
 
     # Inputs
     S = st.number_input("Prix du sous-jacent (S)", value=100.0, key="bin_s")
@@ -343,7 +340,7 @@ with tab3:
 
 # === Onglet 4 : Monte Carlo Longstaff-Schwartz ===
 with tab4:
-    st.header("🎲📚 Pricing avec Monte Carlo Longstaff-Schwartz")
+    st.header("🎲📚 Pricing avec Monte Carlo Longstaff-Schwartz - Options US")
 
     # Inputs Streamlit
     S = st.number_input("Prix du sous-jacent (S)", value=100.0, key="ls_s")
