@@ -98,7 +98,7 @@ with tab2:
         st.write(f"Theta : {theta:.4f} | Vega : {vega:.4f} | Rho : {rho:.4f}")
 
         # Courbes pour différents prix S
-        S_values = np.linspace(S * 0.5, S * 1.5, 100)
+        S_values = np.linspace(S * 0.8, S * 1.2, 25)
         results = [binomial_tree_greeks(Si, K, T, r, sigma, int(N), option_type, american) for Si in S_values]
         prices, deltas, gammas, thetas, vegas, rhos = zip(*results)
 
