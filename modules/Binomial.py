@@ -1,4 +1,9 @@
 ############## Fonction pour Binomial Tree ##################
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
 def binomial_tree_price(S, K, T, r, sigma, N, option_type="call", american=False):
     dt = T / N
     u = np.exp(sigma * np.sqrt(dt))
