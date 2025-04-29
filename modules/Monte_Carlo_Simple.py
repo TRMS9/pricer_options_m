@@ -1,4 +1,9 @@
 ############ Fonction pour Monte Carlo - options européennes ##################
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
 
 def monte_carlo_option_pricing(S, K, T, r, sigma, num_simulations, option_type="call", variance_reduction=False):
     np.random.seed(42)
