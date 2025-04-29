@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 from modules.black_scholes import black_scholes
-from modules.binomial_tree import binomial_tree_greeks
+from modules.Binomial import binomial_tree_price
+from modules.Binomial import binomial_tree_greeks
 from modules.monte_carlo_european import monte_carlo_option_pricing
 from modules.monte_carlo_longstaff import monte_carlo_longstaff_schwartz
 
