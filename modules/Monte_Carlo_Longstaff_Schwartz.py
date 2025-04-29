@@ -1,4 +1,9 @@
 ######### Fonction pour Monte Carlo Longstaff-Schwartz ###############
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
 
 def monte_carlo_longstaff_schwartz(S, K, T, r, sigma, M, N, option_type="call"):
     np.random.seed(42)
