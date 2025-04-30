@@ -66,7 +66,7 @@ def binomial_tree_greeks(S, K, T, r, sigma, N, option_type="call", american=Fals
 
     price = option_tree[0, 0]
 
-    # Greeks manuellement
+    # Greeks
     delta = (option_tree[0,1] - option_tree[1,1]) / (stock_tree[0,1] - stock_tree[1,1])
 
     delta_up = (option_tree[0,2] - option_tree[1,2]) / (stock_tree[0,2] - stock_tree[1,2])
